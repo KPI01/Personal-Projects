@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+
+:root {
+  --line-border-fill: rgb(79, 201, 112);
+  --line-border-empty: rgba(163, 222, 212, 0.61);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(224, 255, 251);
+  font-family: "Muli", sans-serif;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+}
+
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 350px;
+  margin-bottom: 40px;
+  max-width: 100%;
+}
+
+/*Adjusting progress bar without fill*/
+.progress-container::before {
+  content: "";
+  background-color: var(--line-border-empty);
+  opacity: 35%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 100%;
+  z-index: -1;
+}
+
+/*Adjusting filled progress bar*/
+.progress {
+  background-color: var(--line-border-fill);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 0%;
+  z-index: -1;
+  transition: 650ms ease;
+}
+
+/*Adjusting all circles*/
+.circle {
+  background-color: rgb(189, 227, 221);
+  color: rgb(13, 58, 43);
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--line-border-empty);
+}
+
+/*Adjusting active circle*/
+.circle.active {
+  border-color: var(--line-border-fill);
+}
+
+/*Adjusting buttons*/
+.btn {
+  background-color: var(--line-border-fill);
+  color: #000;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 6px 30px;
+  margin: 5px;
+  font-size: 20px;
+  transition: 150ms ease;
+}
+.btn:active {
+  transform: scale(0.85);
+}
+.btn:focus {
+ outline: 0;
+}
+.btn:disabled {
+ background-color: var(--line-border-empty);
+ cursor: not-allowed;
+ color: #999;
+}
