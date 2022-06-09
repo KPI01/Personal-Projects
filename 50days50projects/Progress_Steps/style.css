@@ -28,11 +28,10 @@ body {
   display: flex;
   justify-content: space-between;
   position: relative;
-  width: 350px;
+  width: 80vw;
   margin-bottom: 40px;
   max-width: 100%;
 }
-
 /*Adjusting progress bar without fill*/
 .progress-container::before {
   content: "";
@@ -57,7 +56,7 @@ body {
   height: 4px;
   width: 0%;
   z-index: -1;
-  transition: 650ms ease;
+  transition: 450ms ease-in-out;
 }
 
 /*Adjusting all circles*/
@@ -71,11 +70,13 @@ body {
   align-items: center;
   justify-content: center;
   border: 3px solid var(--line-border-empty);
+  display: block;
 }
 
 /*Adjusting active circle*/
 .circle.active {
   border-color: var(--line-border-fill);
+  transition: 0.8s ease-in;
 }
 
 /*Adjusting buttons*/
@@ -95,10 +96,10 @@ body {
   transform: scale(0.85);
 }
 .btn:focus {
- outline: 0;
+  outline: 0;
 }
 .btn:disabled {
- background-color: var(--line-border-empty);
- cursor: not-allowed;
- color: #999;
+  background-color: var(--line-border-empty);
+  cursor: not-allowed;
+  color: #999;
 }

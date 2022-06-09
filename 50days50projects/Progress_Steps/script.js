@@ -1,56 +1,70 @@
 /*Declaring variables*/
-const progress = document.getElementById('progress');
-const prev = document.getElementById('prev');
-const next = document.getElementById('next');
-const circles = document.querySelectorAll('.circle');
+const progress = document.getElementById("progress");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+const circles = document.querySelectorAll(".circle");
 
-/*Variable for counting active circle*/
-let currentActive = 1;
+/*Variable for counting active circles*/
+let currentActive = 0;
 
-/*EventListener for clicks on buttons*/
-next.addEventListener('click', () => {
- currentActive++;
+/*Event Listener on click 'prev' Button*/
+prev.addEventListener("click", () => {
+  currentActive--;
 
- /*Conditional in case currentActive is bigger than number of circles*/
- if (currentActive > circles.length) {
-  currentActive = circles.length;
- }
-
- update();
-})
-prev.addEventListener('click', () => {
- currentActive--;
-
- if (currentActive < 1) {
-  currentActive = 1;
- }
-
- update();
-})
-
-/*function for updating which circle is active*/
-function update() {
- circles.forEach((circle, idx) => {
-  if(idx < currentActive) {
-   circle.classList.add('active');
-  }else{
-   circle.classList.remove('active');
+  if (currentActive < 0) {
+    currentActive = 0;
   }
- })
+
+  update();
+
+  btnCheck();
+});
+
+/*Event Listener on click 'next' button*/
+next.addEventListener("click", () => {
+  currentActive++;
+
+  if (currentActive > circles.length) {
+    currentActive = circles.length;
+  }
+
+  update();
+
+  btnCheck();
+});
+
+/*function for changing actives circles*/
+function update() {
+  circles.forEach((circle, idx) => {
+    if (idx < currentActive) {
+      circle.classList.add("active");
+    } else {
+      circle.classList.remove("active");
+    }
+  });
+
+  const actives = document.querySelectorAll(".active");
+
+  progress.style.width =
+    ((actives.length - 1) / (circles.length - 1)) * 100 + "%";
+
+  if (currentActive === 0) {
+    prev.disabled = true;
+  } else if (currentActive === circles.length) {
+    next.disabled = true;
+  } else {
+    next.disabled = false;
+    prev.disabled = false;
+  }
 }
 
-/*declaring variable for active circles*/
-const actives = document.querySelectorAll('.active');
-
-/*calculate % for filled progress bar width*/
-progress.style.width = (actives.length - 1) / (circles.length - 1) * 100 + '%';
-
-/*disable or enable buttons*/
-if (currentActive === 1) {
- prev.disabled = true;
-} else if (currentActive === circles.length) {
-  next.disabled = true;
-} else {
- prev.disabled = false;
- next.disabled = false;
+function btnCheck() {
+  if (currentActive === 0) {
+    prev.innerHTML = "-";
+  } else if (currentActive === circles.length) {
+    next.innerHTML = "-"
+  } else {
+    prev.innerText = "Prev";
+    next.innerHTML = "Next"
+  }
 }
