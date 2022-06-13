@@ -8,19 +8,21 @@ import random
 def game():
 
     # user's input
-    user = input("Input Rock(R), Paper(P) or Scissor(S): \n").upper()
+    user = input("\nInput Rock(R), Paper(P) or Scissor(S): \n").upper()
 
     # computer's input
     computer = random.choice(['R', 'P', 'S'])
-    print(f'Computer choosed: {computer}')
+    print(f'\nComputer chose: {computer}\n')\
+
+    print(f'You have chosen \'{user}\' and computer chosen \'{computer}\' sooo.... ** suspense ** ....\n')
 
     if (user == computer):
-        return "There's a tie! :o"
+        return "There's a tie! :o\n"
     
     if user_wins(user, computer):
-     return "You win!! :)"
+     return "You win!! :)\n"
 
-    return "You have lost :'("
+    return "You have lost :'(\n"
 
 
 def user_wins(player, rival):
